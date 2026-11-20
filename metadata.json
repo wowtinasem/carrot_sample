@@ -1,0 +1,8 @@
+{
+  "name": "Remix 아이콘카페 — 유기농 당근케이크",
+  "description": "제주 구좌 유기농 당근으로 만든 신메뉴 유기농 당근케이크 소개 및 첫 방문 아메리카노 무료 쿠폰",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

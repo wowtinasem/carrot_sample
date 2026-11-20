@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: "Jua", "Noto Sans KR", sans-serif;
+    --font-sans: "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: #FFFBF4;
+    color: #3D261C;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono-code {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 0.9s steps(1, end) infinite;
+}
+
+/* 3D Menu Card Flip */
+.menu-flip-card {
+  perspective: 1100px;
+}
+
+.menu-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .menu-flip-card:hover .menu-flip-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+.menu-flip-card[data-flipped="true"] .menu-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.menu-flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.menu-flip-front {
+  transform: rotateY(0deg);
+}
+
+.menu-flip-back {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-flip-inner {
+    transform-style: flat;
+    transition: none;
+  }
+  .menu-flip-card:hover .menu-flip-inner,
+  .menu-flip-card[data-flipped="true"] .menu-flip-inner {
+    transform: none;
+  }
+  .menu-flip-back {
+    transform: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .menu-flip-card:hover .menu-flip-back,
+  .menu-flip-card[data-flipped="true"] .menu-flip-back {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
